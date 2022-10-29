@@ -1,10 +1,7 @@
 
-from queue import Empty
-
-
 def user_responses(input_text):
     user_message = str(input_text).lower()
     
-    if user_message is Empty:
+    if not user_message:
         return "Please provide valid info"
     

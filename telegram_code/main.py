@@ -1,5 +1,5 @@
 from urllib import response
-import Keys as keys
+import config as keys
 from telegram.ext import *
 import Responses as R
 

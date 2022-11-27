@@ -1,7 +1,7 @@
 from enum import unique
 from django.db import models
 from django.contrib.auth import get_user_model
-
+from bot.models import *
 # Create your models here.
 
 class ModeOfTransport(models.Model):
@@ -30,7 +30,8 @@ class VehicleDetail(models.Model):
 
 
 class Trip(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    #user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(TelegramUsers, on_delete=models.PROTECT)
     mode_of_transport = models.ForeignKey(ModeOfTransport, on_delete=models.PROTECT)
     vehicle = models.ForeignKey(VehicleDetail, on_delete=models.CASCADE, null=True)
     travel_date_time = models.DateTimeField()
@@ -41,4 +42,4 @@ class Trip(models.Model):
     
     
     def __str__(self) :
-        return f"{self.user.username}_{self.vehicle.code}_{self.travel_date_time.date()}"
+        return f"{self.user.first_name}_{self.vehicle.code}_{self.travel_date_time.date()}"
